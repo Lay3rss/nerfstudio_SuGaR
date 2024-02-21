@@ -117,7 +117,7 @@ conda activate nerfstudio
 pip install --upgrade pip
 ```
 
-### Dependencies
+### Installing nerfstudio
 
 Install PyTorch with CUDA (this repo has been tested with CUDA 11.7 and CUDA 11.8) and [tiny-cuda-nn](https://github.com/NVlabs/tiny-cuda-nn).
 `cuda-toolkit` is required for building `tiny-cuda-nn`.
@@ -125,31 +125,19 @@ Install PyTorch with CUDA (this repo has been tested with CUDA 11.7 and CUDA 11.
 For CUDA 11.8:
 
 ```bash
-pip install torch==2.1.2+cu118 torchvision==0.16.2+cu118 --extra-index-url https://download.pytorch.org/whl/cu118
-
+git clone https://github.com/Lay3rss/nerfstudio_SuGaR.git
+cd nerfstudio_SuGaR
+pip install --upgrade pip setuptools
+pip install -e .
+ns-install-cli
+pip uninstall torch torchvision functorch tinycudann
+conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 conda install -c "nvidia/label/cuda-11.8.0" cuda-toolkit
-pip install ninja git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch
+pip install ninja git+https://github.com/NVlabs/tiny-cuda-nn/#subdirectory=bindings/torch 
 ```
 
 See [Dependencies](https://github.com/nerfstudio-project/nerfstudio/blob/main/docs/quickstart/installation.md#dependencies)
 in the Installation documentation for more.
-
-### Installing nerfstudio
-
-Easy option:
-
-```bash
-pip install nerfstudio
-```
-
-**OR** if you want the latest and greatest:
-
-```bash
-git clone https://github.com/nerfstudio-project/nerfstudio.git
-cd nerfstudio
-pip install --upgrade pip setuptools
-pip install -e .
-```
 
 **OR** if you want to skip all installation steps and directly start using nerfstudio, use the docker image:
 
